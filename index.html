@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Clima por Ubicación | Azure Maps</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <div class="background-gradient"></div>
+
+  <main class="container">
+    <header class="header">
+      <div class="logo">
+        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z" fill="currentColor"/>
+        </svg>
+        <h1>Clima por Ubicación</h1>
+      </div>
+      <p class="subtitle">Geolocalización + Azure Maps + Open-Meteo</p>
+    </header>
+
+    <section class="actions">
+      <button id="btn-location" class="btn-primary" type="button">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <path d="M12 8c-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4-1.79-4-4-4zm8.94 3A8.994 8.994 0 0013 3.06V1h-2v2.06A8.994 8.994 0 003.06 11H1v2h2.06A8.994 8.994 0 0011 20.94V23h2v-2.06A8.994 8.994 0 0020.94 13H23v-2h-2.06zM12 19c-3.87 0-7-3.13-7-7s3.13-7 7-7 7 3.13 7 7-3.13 7-7 7z" fill="currentColor"/>
+        </svg>
+        Obtener mi ubicación
+      </button>
+
+      <div class="manual-input">
+        <label for="lat">Latitud</label>
+        <input type="number" id="lat" step="any" placeholder="19.4326">
+        <label for="lon">Longitud</label>
+        <input type="number" id="lon" step="any" placeholder="-99.1332">
+        <button id="btn-manual" class="btn-secondary" type="button">Consultar</button>
+      </div>
+    </section>
+
+    <div id="status" class="status hidden" role="status" aria-live="polite"></div>
+
+    <section id="results" class="results hidden">
+      <article class="card location-card">
+        <h2>Ubicación</h2>
+        <p id="location-name" class="location-name">—</p>
+        <div class="coords">
+          <span><strong>Latitud:</strong> <span id="display-lat">—</span></span>
+          <span><strong>Longitud:</strong> <span id="display-lon">—</span></span>
+        </div>
+        <p class="source-tag">Fuente: Azure Maps (Reverse Geocoding)</p>
+      </article>
+
+      <article class="card weather-card">
+        <div class="weather-header">
+          <div id="weather-icon" class="weather-icon" aria-hidden="true">☀️</div>
+          <div>
+            <h2 id="weather-condition">—</h2>
+            <p id="weather-description" class="weather-desc">—</p>
+          </div>
+        </div>
+        <div class="weather-stats">
+          <div class="stat">
+            <span class="stat-label">Temperatura</span>
+            <span id="temperature" class="stat-value">—</span>
+          </div>
+          <div class="stat">
+            <span class="stat-label">Humedad</span>
+            <span id="humidity" class="stat-value">—</span>
+          </div>
+          <div class="stat">
+            <span class="stat-label">Viento</span>
+            <span id="wind" class="stat-value">—</span>
+          </div>
+        </div>
+        <p class="source-tag">Fuente: Open-Meteo API</p>
+      </article>
+    </section>
+
+    <footer class="footer">
+      <p>Proyecto AOS 2.1 — APIs: Geolocation, Azure Maps, Open-Meteo</p>
+    </footer>
+  </main>
+
+  <script src="js/config.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
